@@ -109,6 +109,8 @@ Button bob = (Button) rootView.findViewById(R.id.button);
 
 *Sending external file via email*
 
+just change `test_storage.csv` and `some_email_address@email.com` with your filename and email address respectively
+
 ```java
 Button rufus = (Button) rootView.findViewById(R.id.button2);
     rufus.setOnClickListener(new View.OnClickListener() {
