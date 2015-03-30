@@ -63,7 +63,78 @@ Tada!
 
 ## Saving to a File
 
-TODO
+
+#### Internal Storage
+
+```Java
+                // write something to do if clicked below
+                String current_time = String.valueOf(System.currentTimeMillis());
+
+                String filename = "my_first_data_file.csv";
+                FileOutputStream outputStream;/
+                try {
+                    outputStream = getActivity().openFileOutput(filename, getActivity().MODE_PRIVATE);
+                    outputStream.write(current_time.getBytes());
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getActivity(), "time, "+ current_time, Toast.LENGTH_SHORT).show();
+```
+
+#### External Storage
+
+```java
+  bob.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
+
+                String line ="time, "+ String.valueOf(System.currentTimeMillis() + "\n");
+                try {
+                    OutputStream os = new FileOutputStream(file,true); // true so we can append
+                    os.write(line.getBytes());
+                    os.close();
+                } catch (IOException e) {
+                    // Unable to create file, likely because external storage is
+                    // not currently mounted.
+                }
+
+
+
+
+            }
+
+        });
+        
+    ```
+    
+   
+ ```Java
+    Button rufus = (Button) rootView.findViewById(R.id.button2);
+
+        rufus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // write something to do if clicked below
+                File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
+
+                String emailAddress = "gregory.kielian@gmail.com";
+                String subject = "App Send An Email";
+                String message = "Sup. My app just send you an email whenever I press this button...";
+
+
+                Uri U = Uri.fromFile(file);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/csv");
+                intent.putExtra(Intent.EXTRA_STREAM, U);
+                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
+                intent.putExtra(Intent.EXTRA_TEXT, message);
+                startActivity(Intent.createChooser(intent,"Email:"));
+            }
+
+        });
+    ```
+
 
 ## Saving to SQLLite database
 
