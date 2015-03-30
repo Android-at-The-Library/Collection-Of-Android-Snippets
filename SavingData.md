@@ -84,56 +84,55 @@ Tada!
 
 #### External Storage
 
+
+*Writing (appending) to an external file*
+
 ```java
+Button bob = (Button) rootView.findViewById(R.id.button);
   bob.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
+        public void onClick(View view) {
+            File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
 
-                String line ="time, "+ String.valueOf(System.currentTimeMillis() + "\n");
-                try {
-                    OutputStream os = new FileOutputStream(file,true); // true so we can append
-                    os.write(line.getBytes());
-                    os.close();
-                } catch (IOException e) {
-                    // Unable to create file, likely because external storage is
-                    // not currently mounted.
-                }
-
-
-
-
+            String line ="time, "+ String.valueOf(System.currentTimeMillis() + "\n");
+            try {
+                OutputStream os = new FileOutputStream(file,true); // true so we can append
+                os.write(line.getBytes()); 
+                os.close();
+            } catch (IOException e) {
+                // Unable to create file, likely because external storage is
+                // not currently mounted.
             }
+        }
+});
+```
 
-        });
-        
-    ```
+
+*Sending external file via email*
+
+```java
+Button rufus = (Button) rootView.findViewById(R.id.button2);
+    rufus.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View view) {
+            // write something to do if clicked below
+            File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
+
+            String emailAddress = "gregory.kielian@gmail.com";
+            String subject = "App Send An Email";
+            String message = "Sup. My app just send you an email whenever I press this button...";
+
+            Uri U = Uri.fromFile(file);
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/csv");
+            intent.putExtra(Intent.EXTRA_STREAM, U);
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
+            intent.putExtra(Intent.EXTRA_TEXT, message);
     
-   
- ```Java
-    Button rufus = (Button) rootView.findViewById(R.id.button2);
+            startActivity(Intent.createChooser(intent,"Email:"));
+    }
 
-        rufus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                // write something to do if clicked below
-                File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
-
-                String emailAddress = "gregory.kielian@gmail.com";
-                String subject = "App Send An Email";
-                String message = "Sup. My app just send you an email whenever I press this button...";
-
-
-                Uri U = Uri.fromFile(file);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/csv");
-                intent.putExtra(Intent.EXTRA_STREAM, U);
-                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
-                intent.putExtra(Intent.EXTRA_TEXT, message);
-                startActivity(Intent.createChooser(intent,"Email:"));
-            }
-
-        });
-    ```
+});
+```
 
 
 ## Saving to SQLLite database
