@@ -33,3 +33,33 @@ rufus.setOnClickListener(new View.OnClickListener() {
   }
 });
 ```
+
+
+## Buttons with Fragments
+
+
+```java
+public class ExampleFragment extends Fragment{
+
+    public ExampleFragment() {
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        Button bob = (Button) rootView.findViewById(R.id.button);
+
+        bob.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // write something to do if clicked below
+                Toast.makeText(getActivity(), "hello world", Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+        return rootView;
+    }
+}
+```
