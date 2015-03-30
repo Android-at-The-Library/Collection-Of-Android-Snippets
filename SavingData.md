@@ -116,14 +116,14 @@ Button rufus = (Button) rootView.findViewById(R.id.button2);
             // write something to do if clicked below
             File file = new File(getActivity().getExternalFilesDir(null), "test_storage.csv");
 
-            String emailAddress = "gregory.kielian@gmail.com";
+            String emailAddress = "some_email_address@email.com";
             String subject = "App Send An Email";
             String message = "Sup. My app just send you an email whenever I press this button...";
 
-            Uri U = Uri.fromFile(file);
+            Uri uri = Uri.fromFile(file);
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/csv");
-            intent.putExtra(Intent.EXTRA_STREAM, U);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
             intent.putExtra(Intent.EXTRA_SUBJECT, subject);
             intent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
             intent.putExtra(Intent.EXTRA_TEXT, message);
