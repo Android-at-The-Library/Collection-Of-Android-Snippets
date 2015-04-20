@@ -8,13 +8,18 @@ is to push directly to a Google spreadsheet.
 2) you will need to add the following snippet to your code (e.g. inside a button, or postHandler):
 
 ```Java
-         String data = "your data";
+String url, data, form_hash, auto_submit
+         double data = 9001; // awesomeness_level
          String form_hash="1QQn0fDwwdnRpLeW9ih_uXlPtWDKVTLpN55haNl-q7-U"; //replace with hash
-         data = "entry.456604062=" + data;
+         Stirng data = "entry.456604062=" + data;
          auto_submit = "&submit=Submit"; //add this to the end to make it autosubmit
          String url = "https://docs.google.com/forms/d/" + form_hash + "/formResponse?" + data + auto_submit;
 ```
 
+Using the following line to execute the httprequest:
+```Java
+  new RequestTask().execute(url);
+```
 
 3) add this class to your activity (credit to [Konstantin Burov](http://stackoverflow.com/questions/3505930/make-an-http-request-with-android))
 ```Java
