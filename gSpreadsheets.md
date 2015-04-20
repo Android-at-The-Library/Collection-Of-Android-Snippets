@@ -7,8 +7,13 @@ is to push directly to a Google spreadsheet.
 
 2) you will need to add the following snippet to your code (e.g. inside a button, or postHandler):
 
+- make this a field of your Activity
 ```Java
-String url, data, form_hash, auto_submit
+String url;
+```
+
+- Place this wehere you want to update the url:
+```Java
          double data = 9001; // awesomeness_level
          String form_hash="1QQn0fDwwdnRpLeW9ih_uXlPtWDKVTLpN55haNl-q7-U"; //replace with hash
          Stirng data = "entry.456604062=" + data;
@@ -16,7 +21,7 @@ String url, data, form_hash, auto_submit
          String url = "https://docs.google.com/forms/d/" + form_hash + "/formResponse?" + data + auto_submit;
 ```
 
-Using the following line to execute the httprequest:
+- Using the following line to execute the httprequest:
 ```Java
   new RequestTask().execute(url);
 ```
