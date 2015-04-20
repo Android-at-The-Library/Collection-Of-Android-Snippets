@@ -16,9 +16,9 @@ String url;
 ```Java
          double data = 9001; // awesomeness_level
          String form_hash="1QQn0fDwwdnRpLeW9ih_uXlPtWDKVTLpN55haNl-q7-U"; //replace with hash
-         Stirng data = "entry.456604062=" + data;
+         String data_string = "entry.456604062=" + data; //replace entry # with your entry #
          auto_submit = "&submit=Submit"; //add this to the end to make it autosubmit
-         String url = "https://docs.google.com/forms/d/" + form_hash + "/formResponse?" + data + auto_submit;
+         String url = "https://docs.google.com/forms/d/" + form_hash + "/formResponse?" + data_string + auto_submit;
 ```
 
 - Using the following line to execute the httprequest:
