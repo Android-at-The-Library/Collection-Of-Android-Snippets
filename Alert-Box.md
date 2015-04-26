@@ -9,8 +9,8 @@ Probably would be good to put it into it's own helper method.
  
         alert_builder
                 .setTitle("This is an Alert Box") //change this
-                .setMessage("I wanted you to know something, and so I made this alert :D")
-                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                .setMessage("I wanted you to know something, and so I made this alert :D") //change this too
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() { //change "Confirm to whatever"
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
