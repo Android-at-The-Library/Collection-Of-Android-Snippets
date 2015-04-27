@@ -98,3 +98,31 @@ Intent intent = new Intent(ThisActivity.this, NextPageName.class );
 startActivity(intent);
 ```
 
+
+## Putting Extras
+
+you have the option to send some data along with an intent:
+
+
+#### In the activity triggering the intent 
+
+```java
+Intent intent = new Intent(ThisActivity.this, NextPageName.class );
+intent.putExtra("a_key","a_value");
+intent.putExtra("b_key","b_value");
+//etc...
+startActivity(intent);
+```
+
+
+#### Get the intents from the started activity.
+
+```java
+Intent intent = getIntent();
+String first_value = intent.getStringExtra("a_key");
+String second_value = intent.getStringExtra("b_key");
+//etc...
+```
+
+
+
